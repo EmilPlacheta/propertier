@@ -29,7 +29,7 @@ router.post(
   [
     auth,
     [
-      check('name', 'Name is required')
+      check('propertyName', 'Name is required')
         .not()
         .isEmpty()
     ]
@@ -41,15 +41,15 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, phone, type } = req.body;
+    const { propertyName, tenant, rent, stage } = req.body;
 
     try {
       const newContact = new Contact({
-        name,
-        email,
-        phone,
+        propertyName,
+        tenant,
+        rent,
         user: req.user.id,
-        type
+        stage
       });
 
       const contact = await newContact.save();
@@ -66,14 +66,14 @@ router.post(
 //@desc     Update contact
 //@access   Private
 router.put('/:id', auth, async (req, res) => {
-  const { name, email, phone, type } = req.body;
+  const { propertyName, tenant, rent, stage } = req.body;
 
   //Build a contact object
   const contactFields = {};
-  if (name) contactFields.name = name;
-  if (email) contactFields.email = email;
-  if (phone) contactFields.phone = phone;
-  if (type) contactFields.type = type;
+  if (propertyName) contactFields.propertyName = propertyName;
+  if (tenant) contactFields.tenant = tenant;
+  if (rent) contactFields.rent = rent;
+  if (stage) contactFields.stage = stage;
 
   try {
     let contact = await Contact.findById(req.params.id);

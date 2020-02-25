@@ -5,21 +5,20 @@ const ContactSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
   },
-
-  name: {
+  propertyName: {
     type: String,
     required: true
   },
-  email: {
-    type: String,
-    required: true
-  },
-  phone: {
+  tenant: {
     type: String
   },
-  type: {
+  rent: {
+    type: String
+  },
+  stage: {
     type: String,
-    default: 'personal'
+    default: 'vacant',
+    required: true
   },
   date: {
     type: Date,

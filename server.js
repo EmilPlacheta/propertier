@@ -10,9 +10,7 @@ connectDB();
 
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) =>
-  res.json({ msg: 'Welcome to the Contact Keeper API' })
-);
+app.get('/', (req, res) => res.json({ msg: 'Welcome to the Propertier API' }));
 
 //Define Routes
 

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import axios from 'axios';
 import ContactContext from './ContactContext';
 import contactReducer from './contactReducer';
@@ -23,6 +23,9 @@ const ContactState = props => {
     error: null
   };
 
+  //show update component state
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  console.log(showUpdateForm + ' state from ContactState');
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   //get contacts
@@ -115,6 +118,7 @@ const ContactState = props => {
   //set current contact
   const setCurrent = contact => {
     dispatch({ type: SET_CURRENT, payload: contact });
+    setShowUpdateForm(true);
   };
   //clear current contact
   const clearCurrent = () => {
@@ -137,6 +141,8 @@ const ContactState = props => {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        showUpdateForm,
+        setShowUpdateForm,
         addContact,
         deleteContact,
         setCurrent,

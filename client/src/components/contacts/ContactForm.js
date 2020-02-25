@@ -4,30 +4,36 @@ import ContactContext from '../../context/contact/ContactContext';
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
 
-  const { addContact, updateContact, current, clearCurrent } = contactContext;
+  const {
+    addContact,
+    updateContact,
+    setShowUpdateForm,
+    current,
+    clearCurrent
+  } = contactContext;
 
   useEffect(() => {
     if (current !== null) {
       setContact(current);
     } else {
       setContact({
-        name: '',
-        email: '',
-        phone: '',
-        type: 'personal'
+        propertyName: '',
+        tenant: '',
+        rent: '',
+        stage: 'vacant'
       });
     }
   }, [contactContext, current]);
 
   //contact state
   const [contact, setContact] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    type: 'personal'
+    propertyName: ' ',
+    tenant: ' ',
+    rent: ' ',
+    stage: ' '
   });
 
-  const { name, email, phone, type } = contact;
+  const { propertyName, tenant, rent, stage } = contact;
 
   //form control
   function onChange(e) {
@@ -42,6 +48,7 @@ const ContactForm = () => {
       updateContact(contact);
     }
     clearAll();
+    setShowUpdateForm(false);
   }
 
   const clearAll = () => {
@@ -51,50 +58,74 @@ const ContactForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <h2 className='text-primary'>
-        {current ? 'Edit Contact' : 'Add Contact'}
+        {current ? 'Edit Property' : 'Add new property'}
       </h2>
       <input
         type='text'
-        placeholder='Name'
-        name='name'
-        value={name}
-        onChange={onChange}
-      />
-      <input
-        type='email'
-        placeholder='Email'
-        name='email'
-        value={email}
+        placeholder='Property name'
+        name='propertyName'
+        value={propertyName}
         onChange={onChange}
       />
       <input
         type='text'
-        placeholder='Phone'
-        name='phone'
-        value={phone}
+        placeholder='Tenants name'
+        name='tenant'
+        value={tenant}
         onChange={onChange}
       />
-      <h5>Contact Type:</h5>
+      <input
+        type='text'
+        placeholder='Rent amount'
+        name='rent'
+        value={rent}
+        onChange={onChange}
+      />
+      <h5>Stage:</h5>
       <input
         type='radio'
-        name='type'
-        value='personal'
-        checked={type === 'personal'}
+        name='stage'
+        value='vacant'
+        checked={stage === 'vacant'}
         onChange={onChange}
       />{' '}
-      Personal{' '}
+      Vacant
       <input
         type='radio'
-        name='type'
-        value='professional'
-        checked={type === 'professional'}
+        name='stage'
+        value='rented'
+        checked={stage === 'rented'}
         onChange={onChange}
       />{' '}
-      Professional{' '}
+      Rented
+      <input
+        type='radio'
+        name='stage'
+        value='renovation'
+        checked={stage === 'renovation'}
+        onChange={onChange}
+      />{' '}
+      Renovation
+      <input
+        type='radio'
+        name='stage'
+        value='for sale'
+        checked={stage === 'for sale'}
+        onChange={onChange}
+      />{' '}
+      For Sale
+      <input
+        type='radio'
+        name='stage'
+        value='sold'
+        checked={stage === 'sold'}
+        onChange={onChange}
+      />{' '}
+      Sold
       <div>
         <input
           type='submit'
-          value={current ? 'Update Contact' : 'Add Contact'}
+          value={current ? 'Update Property' : 'Add Property'}
           className='btn btn-primary btn-block'
         />
       </div>

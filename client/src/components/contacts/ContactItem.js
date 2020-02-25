@@ -5,54 +5,52 @@ import ContactContext from '../../context/contact/ContactContext';
 const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
 
-  const { deleteContact, setCurrent, clearCurrent } = contactContext;
-  const { _id, name, email, phone, type } = contact;
+  //state for show the 'update component/form'
+
+  const {
+    deleteContact,
+    setCurrent,
+    clearCurrent,
+    showUpdateForm,
+    setShowUpdateForm
+  } = contactContext;
+  const { _id, propertyName, tenant, rent, stage } = contact;
 
   const onDelete = () => {
     deleteContact(_id);
     clearCurrent();
   };
+  console.log(showUpdateForm + ' state from Contact Item');
 
   return (
-    <div className='card bg-light'>
-      <h3 className='text-primary text-left'>
-        {name}{' '}
-        <span
-          style={{ float: 'right' }}
-          className={
-            'badge ' +
-            (type === 'professional' ? 'badge-success' : 'badge-primary')
-          }
-        >
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </span>
-      </h3>
-      <ul className='list'>
-        {email && (
-          <li>
-            <i className='fas fa-envelope-open'></i> {email}
-          </li>
-        )}
+    <div className='col s5'>
+      <div className='card grey small lighten-5'>
+        <div className='card-content'>
+          <span className='card-title'>
+            <h4>{propertyName}</h4>
+          </span>
+          <ul className='list'>
+            <li> {tenant === null ? null : tenant}</li>
+            <li> {rent !== ' ' ? `Rent: ${rent}` : null}</li>
+          </ul>
+        </div>
+        <div className='card-action'>
+          <a href='#'>
+            <button
+              className='btn grey darken-3 btn-small'
+              onClick={() => setCurrent(contact)}
+            >
+              Edit
+            </button>
+          </a>
 
-        {phone && (
-          <li>
-            <i className='fas fa-phone'></i> {phone}
-          </li>
-        )}
-      </ul>
-
-      <p>
-        <button
-          className='btn btn-dark btn-sm'
-          onClick={() => setCurrent(contact)}
-        >
-          Edit
-        </button>
-
-        <button className='btn btn-danger btn-sm' onClick={onDelete}>
-          Delete
-        </button>
-      </p>
+          <a>
+            <button className='btn-flat btn-small' onClick={onDelete}>
+              Delete
+            </button>
+          </a>
+        </div>
+      </div>
     </div>
   );
 };

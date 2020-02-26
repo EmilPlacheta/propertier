@@ -4,6 +4,7 @@ import ContactForm from '../contacts/ContactForm';
 import ContactFilter from '../contacts/ContactFilter';
 import AuthContext from '../../context/auth/authContext';
 import ContactContext from '../../context/contact/ContactContext';
+import FloatingButton from '../layout/FloatingButton';
 
 const Home = () => {
   const authContext = useContext(AuthContext);
@@ -18,11 +19,12 @@ const Home = () => {
 
   return (
     <div className='row'>
-      <div> {showUpdateForm && <ContactForm />} </div>
       <div className='col s2'></div> {/* space for the side navbar */}
       <div className='col s10'>
+        <div> {showUpdateForm && <ContactForm />} </div>
         <ContactFilter />
         <Contacts />
+        <FloatingButton />
       </div>
     </div>
   );

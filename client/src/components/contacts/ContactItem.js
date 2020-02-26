@@ -20,18 +20,19 @@ const ContactItem = ({ contact }) => {
     deleteContact(_id);
     clearCurrent();
   };
-  console.log(showUpdateForm + ' state from Contact Item');
 
   return (
-    <div className='col s5'>
+    <div className='col s12 m6 l4'>
       <div className='card grey small lighten-5'>
         <div className='card-content'>
           <span className='card-title'>
-            <h4>{propertyName}</h4>
+            <h5>{propertyName}</h5>
           </span>
+          <div className='divider'></div>
           <ul className='list'>
-            <li> {tenant === null ? null : tenant}</li>
+            <li> {tenant !== ' ' ? `Tenant: ${tenant}` : null}</li>
             <li> {rent !== ' ' ? `Rent: ${rent}` : null}</li>
+            <li> {`Stage: ${stage}`}</li>
           </ul>
         </div>
         <div className='card-action'>
@@ -45,7 +46,10 @@ const ContactItem = ({ contact }) => {
           </a>
 
           <a>
-            <button className='btn-flat btn-small' onClick={onDelete}>
+            <button
+              className='btn-flat btn-small btn-delete right'
+              onClick={onDelete}
+            >
               Delete
             </button>
           </a>

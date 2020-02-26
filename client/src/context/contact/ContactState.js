@@ -25,7 +25,7 @@ const ContactState = props => {
 
   //show update component state
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  console.log(showUpdateForm + ' state from ContactState');
+
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   //get contacts
@@ -67,6 +67,7 @@ const ContactState = props => {
       });
     }
   };
+
   //delete contact
   const deleteContact = async id => {
     try {

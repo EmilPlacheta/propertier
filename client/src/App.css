@@ -9,7 +9,7 @@ body {
   border-radius: 3px;
 }
 
-.edit-property {
+.update-form {
   position: absolute;
   z-index: 10;
 }

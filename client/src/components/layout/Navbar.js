@@ -5,13 +5,14 @@ import ContactContext from '../../context/contact/ContactContext';
 import SideNavBG from '../../img/sidenavbg.jpg';
 import ProfilePic from '../../img/demoUserProfilePic.jpg';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import AtGlance from './navbarComponents/AtGlance';
 
 export const Navbar = () => {
   const authContext = useContext(AuthContext);
   const contactContext = useContext(ContactContext);
 
   const { isAuthenticated, logout, user } = authContext;
-  const { clearContacts, contacts } = contactContext;
+  const { clearContacts, contacts, setShowUpdateForm } = contactContext;
 
   const [date, setDate] = useState();
   const [time, setTime] = useState();
@@ -19,6 +20,7 @@ export const Navbar = () => {
   /////MATERIALIZE init for side nav functionality
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
+    // eslint-disable-next-line
     var instances = M.Sidenav.init(elems);
   });
   /////
@@ -40,11 +42,19 @@ export const Navbar = () => {
     clearContacts();
   }
 
-  const authLinks = (
+  function totalRents() {
+    return (contacts && contacts.map(item => parseFloat(item.rent))).reduce(
+      (a, b) => a + b,
+      0
+    );
+  }
+
+  const sideLinks = (
     <Fragment>
       <li>
-        <span className='blue-text'>Hello</span>
-        {user && user.name}
+        <a onClick={() => setShowUpdateForm(true)} href='#!'>
+          <span>Add new property</span>
+        </a>
       </li>
       <li>
         <a onClick={onLogout} href='#!'>
@@ -54,20 +64,21 @@ export const Navbar = () => {
     </Fragment>
   );
 
-  const guestLinks = (
-    <Fragment>
-      <li>
-        <Link to='/register'>Register</Link>
-      </li>
-      <li>
-        <Link to='/about'>About</Link>
-      </li>
-      <li>
-        <a onClick={onLogout} href='#!'>
-          <span>Logout</span>
-        </a>
-      </li>
-    </Fragment>
+  const navLinks = (
+    <div className='right'>
+      <ul>
+        <li>
+          <Link to='/' className='grey-text'>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to='/about' className='grey-text'>
+            About
+          </Link>
+        </li>
+      </ul>
+    </div>
   );
 
   return (
@@ -79,6 +90,7 @@ export const Navbar = () => {
               <i className='material-icons black-text'>menu</i>
             </a>
           )}
+          <div className='right'>{navLinks}</div>
         </div>
       </nav>
 
@@ -90,11 +102,11 @@ export const Navbar = () => {
         <li>
           <div className='user-view'>
             <div className='background blue darken-3'>
-              {/* <img src={SideNavBG} /> */}
+              <img src={SideNavBG} alt='' />
             </div>
             <span className='white-text right'>{time}</span>
             <a href='#user'>
-              <img className='circle' src={ProfilePic} alt='Profile Picture' />
+              <img className='circle' src={ProfilePic} alt='' />
             </a>
             <a href='#name'>
               <span className='white-text name'>{user && user.name}</span>
@@ -103,13 +115,15 @@ export const Navbar = () => {
           </div>
         </li>
         {/* guest links are already in a <li> item */}
-        {guestLinks}
+        {sideLinks}
 
         <li>
           <div className='divider'></div>
         </li>
         <li>
-          <a className='subheader'>Utilities:</a>
+          <a href='#!' className='subheader'>
+            Utilities:
+          </a>
         </li>
         <li>
           <a className='waves-effect' href='#!'>
@@ -126,14 +140,8 @@ export const Navbar = () => {
         <li>
           <div className='divider'></div>
         </li>
-        <li>
-          <a className='subheader'>At a glance:</a>
-        </li>
-        <li>
-          <a href='#!'>
-            <span>Properties managed: {contacts && contacts.length}</span>
-          </a>
-        </li>
+
+        <AtGlance />
       </ul>
     </div>
   );

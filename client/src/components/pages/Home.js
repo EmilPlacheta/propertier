@@ -19,9 +19,11 @@ const Home = () => {
 
   return (
     <div className='row'>
-      <div className='col s2'></div> {/* space for the side navbar */}
-      <div className='col s10'>
-        <div> {showUpdateForm && <ContactForm />} </div>
+      {/* <div className='col s2 hide-on-med-and-down'></div> */}
+      <div className='col l1 s2'></div>
+      {/* space for the side navbar */}
+      <div className='col s12 l10'>
+        {showUpdateForm && <ContactForm />}
         <ContactFilter />
         <Contacts />
         <FloatingButton />

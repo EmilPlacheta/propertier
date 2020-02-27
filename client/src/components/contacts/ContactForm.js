@@ -27,11 +27,15 @@ const ContactForm = () => {
 
   //contact state
   const [contact, setContact] = useState({
-    propertyName: ' ',
-    tenant: ' ',
-    rent: ' ',
-    stage: ' '
+    propertyName: '',
+    tenant: '',
+    rent: '',
+    stage: ''
   });
+
+  const formShadow = {
+    boxShadow: '10px 10px 85px 1100px rgba(0,0,0,0.55)'
+  };
 
   const { propertyName, tenant, rent, stage } = contact;
 
@@ -62,134 +66,140 @@ const ContactForm = () => {
   };
 
   return (
-    <div className='edit-property'>
-      <div className='overlay'></div>
-      <div className='col s12 l12'>
-        <div className='card blue-grey lighten-4'>
-          <div className='card-content'>
-            <span className='card-title'>
-              <h2>{current ? 'Edit Property' : 'Add new property'}</h2>
-            </span>
-            <div className='divider black'></div>
-            <form onSubmit={onSubmit}>
-              <div className='input-field'>
-                <input
-                  type='text'
-                  name='propertyName'
-                  id='propertyName'
-                  value={propertyName}
-                  onChange={onChange}
-                />
-                <label htmlFor='propertyName' className='active'>
-                  Property Name
-                </label>
-              </div>
-              <div className='input-field'>
-                <input
-                  type='text'
-                  name='tenant'
-                  id='tenant'
-                  value={tenant}
-                  onChange={onChange}
-                />
-                <label htmlFor='tenant' className='active'>
-                  Tenant
-                </label>
-              </div>
-              <div className='input-field'>
-                <input
-                  type='text'
-                  name='rent'
-                  id='rent'
-                  value={rent}
-                  onChange={onChange}
-                />
-                <label htmlFor='rebt' className='active'>
-                  Rent Amount
-                </label>
-              </div>
-              <h6>Stage:</h6>
-              <label>
-                <input
-                  className='with-gap'
-                  type='radio'
-                  name='stage'
-                  value='vacant'
-                  checked={stage === 'vacant'}
-                  onChange={onChange}
-                />
-                <span>Vacant</span>
-              </label>
-              <label>
-                <input
-                  className='with-gap'
-                  type='radio'
-                  name='stage'
-                  value='rented'
-                  checked={stage === 'rented'}
-                  onChange={onChange}
-                />
-                <span>Rented</span>
-              </label>
-              <label>
-                <input
-                  className='with-gap'
-                  type='radio'
-                  name='stage'
-                  value='renovation'
-                  checked={stage === 'renovation'}
-                  onChange={onChange}
-                />
-                <span>Renovation</span>
-              </label>
-              <label>
-                <input
-                  className='with-gap'
-                  type='radio'
-                  name='stage'
-                  value='for sale'
-                  checked={stage === 'for sale'}
-                  onChange={onChange}
-                />
-                <span>For sale</span>
-              </label>
-              <label>
-                <input
-                  className='with-gap'
-                  type='radio'
-                  name='stage'
-                  value='sold'
-                  checked={stage === 'sold'}
-                  onChange={onChange}
-                />
-                <span>Sold</span>
-              </label>
-              <div className='card-action'>
-                <a href=''>
-                  <button type='submit' className='btn btn-light btn-small'>
-                    {current ? 'Update' : 'Add'}
-                  </button>
-                </a>
+    <div className='container'>
+      <div className='row update-form'>
+        <div className='col s12'>
+          <div className='card' style={formShadow}>
+            <div className='card-content'>
+              <span className='card-title'>
+                <h2>{current ? 'Edit Property' : 'Add new property'}</h2>
+              </span>
+              <form onSubmit={onSubmit}>
+                <div className='input-field'>
+                  <input
+                    type='text'
+                    name='propertyName'
+                    id='propertyName'
+                    value={propertyName}
+                    onChange={onChange}
+                  />
+                  <label htmlFor='propertyName' className='active'>
+                    Property Name
+                  </label>
+                </div>
+                <div className='input-field'>
+                  <input
+                    type='text'
+                    name='tenant'
+                    id='tenant'
+                    value={tenant}
+                    onChange={onChange}
+                  />
+                  <label htmlFor='tenant' className='active'>
+                    Tenant
+                  </label>
+                </div>
+                <div className='input-field'>
+                  <input
+                    type='text'
+                    name='rent'
+                    id='rent'
+                    value={rent}
+                    onChange={onChange}
+                  />
+                  <label htmlFor='rebt' className='active'>
+                    Rent Amount
+                  </label>
+                </div>
+                {/* Radios */}
+                <h6>Stage:</h6>
+                <div className='col s4'>
+                  <label>
+                    <input
+                      className='with-gap'
+                      type='radio'
+                      name='stage'
+                      value='Vacant'
+                      checked={stage === 'Vacant'}
+                      onChange={onChange}
+                    />
+                    <span>Vacant</span>
+                  </label>
+                </div>
+                <div className='col s4'>
+                  <label>
+                    <input
+                      className='with-gap'
+                      type='radio'
+                      name='stage'
+                      value='Rented'
+                      checked={stage === 'Rented'}
+                      onChange={onChange}
+                    />
+                    <span>Rented</span>
+                  </label>
+                </div>
+                <div className='col s4'>
+                  <label>
+                    <input
+                      className='with-gap'
+                      type='radio'
+                      name='stage'
+                      value='Renovation'
+                      checked={stage === 'Renovation'}
+                      onChange={onChange}
+                    />
+                    <span>Renovation</span>
+                  </label>
+                </div>
+                <div className='col s4'>
+                  <label>
+                    <input
+                      className='with-gap'
+                      type='radio'
+                      name='stage'
+                      value='For sale'
+                      checked={stage === 'For sale'}
+                      onChange={onChange}
+                    />
+                    <span>For sale</span>
+                  </label>
+                </div>
+                <div className='col s4'>
+                  <label>
+                    <input
+                      className='with-gap'
+                      type='radio'
+                      name='stage'
+                      value='Sold'
+                      checked={stage === 'Sold'}
+                      onChange={onChange}
+                    />
+                    <span>Sold</span>
+                  </label>
+                </div>
+                <div className='row'></div>
+                <div className='card-action'>
+                  <a href='#!'>
+                    <button
+                      type='submit'
+                      className='btn grey darken-3 btn-small'
+                    >
+                      {current ? 'Update' : 'Add'}
+                    </button>
+                  </a>
 
-                <a href=''>
-                  <button
-                    className='btn btn-light btn-small'
-                    onClick={clearAll}
-                  >
-                    Clear
-                  </button>
-                </a>
-
-                <a href=''>
-                  <button
-                    className='btn-flat btn-small btn-delete right'
-                    onClick={closeForm}
-                  >
-                    Cancel
-                  </button>
-                </a>
-              </div>
-            </form>
+                  <a href='#!'>
+                    <button
+                      className='btn-flat btn-small btn-delete right'
+                      onClick={closeForm}
+                    >
+                      Cancel
+                    </button>
+                  </a>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -7,13 +7,7 @@ const ContactItem = ({ contact }) => {
 
   //state for show the 'update component/form'
 
-  const {
-    deleteContact,
-    setCurrent,
-    clearCurrent,
-    showUpdateForm,
-    setShowUpdateForm
-  } = contactContext;
+  const { deleteContact, setCurrent, clearCurrent } = contactContext;
   const { _id, propertyName, tenant, rent, stage } = contact;
 
   const onDelete = () => {
@@ -29,14 +23,35 @@ const ContactItem = ({ contact }) => {
             <h5>{propertyName}</h5>
           </span>
           <div className='divider'></div>
-          <ul className='list'>
-            <li> {tenant !== ' ' ? `Tenant: ${tenant}` : null}</li>
-            <li> {rent !== ' ' ? `Rent: ${rent}` : null}</li>
-            <li> {`Stage: ${stage}`}</li>
+          <ul>
+            {tenant !== ' ' ? (
+              <li>
+                <div className='col s2'>
+                  <span className='grey-text text-darken-2'>Tenant: </span>
+                </div>
+                <div className='col s8 offset-s1'>{tenant}</div>
+              </li>
+            ) : null}
+            {rent !== ' ' ? (
+              <li>
+                <div className='col s2'>
+                  <span className='grey-text text-darken-2'>Rent: </span>
+                </div>
+                <div className='col s8 offset-s1'>{rent}</div>
+              </li>
+            ) : null}
+            {stage !== ' ' ? (
+              <li>
+                <div className='col s2'>
+                  <span className='grey-text text-darken-2'>Stage: </span>
+                </div>
+                <div className='col s8 offset-s1'>{stage}</div>
+              </li>
+            ) : null}
           </ul>
         </div>
         <div className='card-action'>
-          <a href='#'>
+          <a href='#!'>
             <button
               className='btn grey darken-3 btn-small'
               onClick={() => setCurrent(contact)}
@@ -45,7 +60,7 @@ const ContactItem = ({ contact }) => {
             </button>
           </a>
 
-          <a>
+          <a href='#!'>
             <button
               className='btn-flat btn-small btn-delete right'
               onClick={onDelete}

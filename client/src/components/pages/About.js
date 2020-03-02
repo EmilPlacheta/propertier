@@ -2,9 +2,13 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div>
-      <h4>About this App.</h4>
-      <p>Full Stack React App for keeping contacts by multiple users.</p>
+    <div className='container'>
+      <h4>About this App</h4>
+      <p>
+        {' '}
+        React App build wth MERN stack. Allows cerating individual accounts with
+        their own property list.
+      </p>
     </div>
   );
 };

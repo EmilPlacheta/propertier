@@ -2,10 +2,10 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import ContactContext from '../../context/contact/ContactContext';
-import SideNavBG from '../../img/sidenavbg.jpg';
+import SideNavBG from '../../img/background-pattern-3.png';
 import ProfilePic from '../../img/demoUserProfilePic.jpg';
-import M from 'materialize-css/dist/js/materialize.min.js';
 import AtGlance from './navbarComponents/AtGlance';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 export const Navbar = () => {
   const authContext = useContext(AuthContext);
@@ -52,14 +52,19 @@ export const Navbar = () => {
   const sideLinks = (
     <Fragment>
       <li>
-        <a onClick={() => setShowUpdateForm(true)} href='#!'>
-          <span>Add new property</span>
-        </a>
+        <Link to='/'>
+          <span>Home</span>
+        </Link>
       </li>
       <li>
-        <a onClick={onLogout} href='#!'>
+        <Link to='/' onClick={() => setShowUpdateForm(true)} href='#!'>
+          <span>Add new property</span>
+        </Link>
+      </li>
+      <li>
+        <Link to='/login' onClick={onLogout}>
           <span>Logout</span>
-        </a>
+        </Link>
       </li>
     </Fragment>
   );
@@ -97,7 +102,9 @@ export const Navbar = () => {
       {/* Materialize side navigation */}
       <ul
         id='slide-out'
-        className={`sidenav ${isAuthenticated ? 'sidenav-fixed' : ''}`}
+        className={`sidenav sidenav-close ${
+          isAuthenticated ? 'sidenav-fixed' : ''
+        }`}
       >
         <li>
           <div className='user-view'>
@@ -105,12 +112,11 @@ export const Navbar = () => {
               <img src={SideNavBG} alt='' />
             </div>
             <span className='white-text right'>{time}</span>
-            <a href='#user'>
-              <img className='circle' src={ProfilePic} alt='' />
-            </a>
-            <a href='#name'>
-              <span className='white-text name'>{user && user.name}</span>
-            </a>
+
+            <img className='circle' src={ProfilePic} alt='' />
+
+            <span className='white-text name'>{user && user.name}</span>
+
             <span className='white-text'>{date}</span>
           </div>
         </li>
@@ -126,15 +132,11 @@ export const Navbar = () => {
           </a>
         </li>
         <li>
-          <a className='waves-effect' href='#!'>
-            /Documents and Checklists/
-          </a>
+          <Link to='/checklists'>Checklists</Link>
         </li>
 
         <li>
-          <a className='waves-effect' href='#!'>
-            Links...
-          </a>
+          <Link to='/documents'>Documents</Link>
         </li>
 
         <li>

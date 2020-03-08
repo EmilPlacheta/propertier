@@ -2,8 +2,8 @@ import React from 'react';
 
 const LoadingBar = () => {
   return (
-    <div className='progress grey darken-3'>
-      <div className='indeterminate '></div>
+    <div className='progress grey'>
+      <div className='indeterminate blue darken-2'></div>
     </div>
   );
 };

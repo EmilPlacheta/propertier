@@ -9,15 +9,14 @@ const AtGlance = () => {
     <div>
       <li>
         <a href='#!' className='subheader'>
-          At a glance:
+          <h5>At a glance:</h5>
         </a>
       </li>
-
       <li>
-        <a href='#!'>
+        <a href='#!' className='subheader'>
           <span>Properties managed: {contacts && contacts.length}</span>
         </a>
-        <a href='#!'>
+        <a href='#!' className='subheader'>
           <span>
             Rent income p/m: £
             {contacts &&

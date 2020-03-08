@@ -13,3 +13,16 @@ body {
   position: absolute;
   z-index: 10;
 }
+
+input:focus {
+  border-bottom: 1px solid royalblue !important;
+}
+
+label.active {
+  color: #8f8f8f !important;
+}
+
+[type='radio']:checked + label:after,
+[type='radio'].with-gap:checked + label:after {
+  background-color: #000 !important;
+}

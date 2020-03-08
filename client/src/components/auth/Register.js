@@ -51,12 +51,12 @@ const Register = props => {
   /* Validation also added to the input fields themselves: required, minLength='6' */
 
   return (
-    <div className='form-container'>
+    <div className='container'>
       <h2>
-        New Account <span className='text-primary'> Register</span>
+        Register <span className='grey-text text-darken-2'> New Account</span>
       </h2>
       <form onSubmit={onSubmit}>
-        <div className='from-group'>
+        <div className='form-group'>
           <label htmlFor='name'>Name</label>
           <input
             type='text'
@@ -76,7 +76,7 @@ const Register = props => {
             required
           />
         </div>
-        <div className='from-group'>
+        <div className='form-group'>
           <label htmlFor='password'>Password</label>
           <input
             type='password'
@@ -87,7 +87,7 @@ const Register = props => {
             minLength='6'
           />
         </div>
-        <div className='from-group'>
+        <div className='form-group'>
           <label htmlFor='password2'>Confirm Password</label>
           <input
             type='password'
@@ -98,11 +98,7 @@ const Register = props => {
             minLength='6'
           />
         </div>
-        <input
-          type='submit'
-          value='Register'
-          className='btn btn-primary btn-block'
-        />
+        <input type='submit' value='Register' className='btn black btn-large' />
       </form>
     </div>
   );

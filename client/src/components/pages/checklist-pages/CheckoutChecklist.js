@@ -15,7 +15,7 @@ const CheckoutChecklist = () => {
               <p>
                 <label>
                   <input type='checkbox' />
-                  <span>Keys (hose, windows, garage)</span>
+                  <span>Keys (house, windows, garage)</span>
                 </label>
               </p>
               <p>

@@ -17,8 +17,7 @@ const ContactSchema = mongoose.Schema({
   },
   stage: {
     type: String,
-    default: 'vacant',
-    required: true
+    default: 'vacant'
   },
   date: {
     type: Date,

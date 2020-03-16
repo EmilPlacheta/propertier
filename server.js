@@ -11,7 +11,7 @@ connectDB();
 
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.json({ msg: 'Welcome to the Propertier API' }));
+//app.get('/', (req, res) => res.json({ msg: 'Welcome to the Propertier API' }));
 
 //Define Routes
 

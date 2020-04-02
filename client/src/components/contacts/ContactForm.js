@@ -33,11 +33,16 @@ const ContactForm = () => {
     stage: ''
   });
 
-  const formShadow = {
-    boxShadow: '10px 10px 85px 1100px rgba(0,0,0,0.55)'
-  };
-
   const { propertyName, tenant, rent, stage } = contact;
+
+  const formShadow = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    boxShadow: '10px 10px 85px 1100px rgba(0,0,0,0.55)',
+    minWidth: '80vw'
+  };
 
   //form control
   function onChange(e) {

@@ -41,7 +41,12 @@ const ContactForm = () => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     boxShadow: '10px 10px 85px 1100px rgba(0,0,0,0.55)',
-    minWidth: '80vw'
+    maxWidth: '50rem',
+    minWidth: '25rem',
+
+    '@media screen and (min-width: 64em)': {
+      backgroundColor: 'orange'
+    }
   };
 
   //form control
